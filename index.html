@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이서연 - 그래픽 디자이너 포트폴리오</title>
+    <style>
+        /* =========================
+           전역 스타일 및 리셋
+           ========================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* 클래식 블루 색상 팔레트 (B8) */
+            --primary-dark: #1565C0;
+            --primary-main: #1976D2;
+            --primary-light: #42A5F5;
+            --primary-pale: #E3F2FD;
+            --text-dark: #212121;
+            --text-light: #757575;
+            --white: #FFFFFF;
+            --shadow: rgba(21, 101, 192, 0.15);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+
+        /* 부드러운 스크롤 효과 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* =========================
+           네비게이션 바
+           ========================= */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px var(--shadow);
+            z-index: 1000;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-main);
+        }
+
+        /* 모바일 메뉴 토글 버튼 */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-dark);
+            transition: 0.3s;
+        }
+
+        /* =========================
+           히어로 섹션
+           ========================= */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-pale) 0%, var(--white) 100%);
+            text-align: center;
+            padding: 0 2rem;
+            margin-top: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-main);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--primary-main);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1.6s ease;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px var(--shadow);
+        }
+
+        /* 애니메이션 키프레임 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           공통 섹션 스타일
+           ========================= */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-main);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* =========================
+           About Me 섹션
+           ========================= */
+        #about {
+            background: var(--primary-pale);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* =========================
+           Skills 섹션
+           ========================= */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            color: var(--primary-main);
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* =========================
+           Projects 섹션 (포트폴리오 갤러리 A7)
+           ========================= */
+        #projects {
+            background: var(--white);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px var(--shadow);
+            cursor: pointer;
+            height: 400px;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        /* 모던 슬릭 인터랙션 (C9) - 확대 및 블러 효과 */
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+            filter: blur(3px);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(21, 101, 192, 0.9) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-info h3 {
+            color: var(--white);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            transform: translateY(20px);
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-info h3 {
+            transform: translateY(0);
+        }
+
+        .project-info p {
+            color: var(--white);
+            font-size: 1rem;
+            line-height: 1.6;
+            transform: translateY(20px);
+            transition: transform 0.5s ease 0.1s;
+        }
+
+        .project-card:hover .project-info p {
+            transform: translateY(0);
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            transform: translateY(20px);
+            transition: transform 0.5s ease 0.2s;
+        }
+
+        .project-card:hover .project-tags {
+            transform: translateY(0);
+        }
+
+        .tag {
+            background: var(--white);
+            color: var(--primary-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* =========================
+           Contact 섹션
+           ========================= */
+        #contact {
+            background: var(--primary-pale);
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: var(--primary-main);
+        }
+
+        .contact-item a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-main);
+            color: var(--white);
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .social-link:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px) rotate(5deg);
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        /* =========================
+           Footer
+           ========================= */
+        footer {
+            background: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: var(--primary-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        /* =========================
+           반응형 디자인 - 태블릿
+           ========================= */
+        @media (max-width: 968px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+        }
+
+        /* =========================
+           반응형 디자인 - 모바일
+           ========================= */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 60px);
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+                box-shadow: 0 5px 20px var(--shadow);
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            .hero {
+                margin-top: 60px;
+                padding: 2rem 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .project-card {
+                height: 300px;
+            }
+
+            .about-text h3 {
+                font-size: 1.5rem;
+            }
+
+            .about-text p {
+                font-size: 1rem;
+            }
+        }
+
+        /* =========================
+           유틸리티 클래스
+           ========================= */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 바 -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">Seoyeon Lee</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 히어로 섹션 -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>이서연</h1>
+            <p class="subtitle">Seoyeon Lee</p>
+            <p>색과 형태로 브랜드의 이야기를 전달하는 그래픽 디자이너입니다.</p>
+            <a href="#projects" class="cta-button">포트폴리오 보기</a>
+        </div>
+    </section>
+
+    <!-- About Me 섹션 -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/400x400/1976D2/FFFFFF?text=Seoyeon+Lee" alt="이서연 프로필 사진">
+                </div>
+                <div class="about-text">
+                    <h3>안녕하세요, 그래픽 디자이너 이서연입니다.</h3>
+                    <p>
+                        저는 브랜드의 본질을 시각적으로 표현하는 것을 전문으로 하는 그래픽 디자이너입니다. 
+                        색상과 형태, 타이포그래피를 통해 각 브랜드만의 고유한 이야기를 전달하는 것에 열정을 가지고 있습니다.
+                    </p>
+                    <p>
+                        5년 이상의 실무 경험을 통해 브랜딩, 패키지 디자인, 편집 디자인 등 다양한 프로젝트를 성공적으로 완수했습니다. 
+                        고객의 니즈를 정확히 파악하고, 트렌드를 반영하면서도 시대를 초월하는 디자인을 만들기 위해 항상 노력합니다.
+                    </p>
+                    <p>
+                        디자인은 단순히 보기 좋은 것을 넘어 명확한 메시지를 전달하고 사용자에게 긍정적인 경험을 제공해야 한다고 믿습니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills 섹션 -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <!-- 스킬 카드 1 -->
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h3>Brand Identity</h3>
+                    <p>로고, 컬러 시스템, 타이포그래피 등 브랜드의 시각적 정체성을 구축합니다.</p>
+                </div>
+                <!-- 스킬 카드 2 -->
+                <div class="skill-card">
+                    <div class="skill-icon">📦</div>
+                    <h3>Package Design</h3>
+                    <p>제품의 가치를 높이는 창의적이고 기능적인 패키지 디자인을 제작합니다.</p>
+                </div>
+                <!-- 스킬 카드 3 -->
+                <div class="skill-card">
+                    <div class="skill-icon">📐</div>
+                    <h3>Editorial Design</h3>
+                    <p>잡지, 브로슈어, 카탈로그 등 다양한 인쇄물의 레이아웃과 편집 디자인을 수행합니다.</p>
+                </div>
+                <!-- 스킬 카드 4 -->
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>Digital Design</h3>
+                    <p>웹사이트, SNS 콘텐츠 등 디지털 환경에 최적화된 디자인을 제공합니다.</p>
+                </div>
+                <!-- 스킬 카드 5 -->
+                <div class="skill-card">
+                    <div class="skill-icon">✏️</div>
+                    <h3>Illustration</h3>
+                    <p>브랜드의 개성을 표현하는 독창적인 일러스트레이션을 제작합니다.</p>
+                </div>
+                <!-- 스킬 카드 6 -->
+                <div class="skill-card">
+                    <div class="skill-icon">🖼️</div>
+                    <h3>Art Direction</h3>
+                    <p>프로젝트의 전체적인 비주얼 방향성을 설정하고 관리합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects 섹션 (포트폴리오 갤러리) -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <!-- 프로젝트 1 -->
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x800/1976D2/FFFFFF?text=Organic+Tea+Branding" alt="오가닉 티 브랜딩" class="project-image">
+                    <div class="project-overlay">
+                        <div class="project-info">
+                            <h3>오가닉 티 브랜딩</h3>
+                            <p>자연과 건강을 테마로 한 프리미엄 티 브랜드의 전체 브랜드 아이덴티티 및 패키지 디자인 프로젝트입니다.</p>
+                            <div class="project-tags">
+                                <span class="tag">Branding</span>
+                                <span class="tag">Package Design</span>
+                                <span class="tag">Identity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 프로젝트 2 -->
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x800/42A5F5/FFFFFF?text=Culture+Magazine" alt="문화 잡지 편집" class="project-image">
+                    <div class="project-overlay">
+                        <div class="project-info">
+                            <h3>문화 잡지 편집 디자인</h3>
+                            <p>현대 미술과 디자인을 다루는 월간 문화 잡지의 레이아웃 및 타이포그래피 작업을 담당했습니다.</p>
+                            <div class="project-tags">
+                                <span class="tag">Editorial</span>
+                                <span class="tag">Typography</span>
+                                <span class="tag">Print</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 프로젝트 3 -->
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x800/1565C0/FFFFFF?text=Eco+Cosmetics" alt="친환경 화장품 패키지" class="project-image">
+                    <div class="project-overlay">
+                        <div class="project-info">
+                            <h3>친환경 화장품 패키지</h3>
+                            <p>지속가능성을 중시하는 화장품 브랜드의 패키지 디자인으로, 미니멀하면서도 고급스러운 느낌을 표현했습니다.</p>
+                            <div class="project-tags">
+                                <span class="tag">Package</span>
+                                <span class="tag">Sustainable</span>
+                                <span class="tag">Minimal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 프로젝트 4 -->
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x800/E3F2FD/1565C0?text=Art+Exhibition+Poster" alt="전시회 포스터" class="project-image">
+                    <div class="project-overlay">
+                        <div class="project-info">
+                            <h3>아트 전시회 포스터</h3>
+                            <p>현대 미술 전시회를 위한 시리즈 포스터 디자인으로, 기하학적 형태와 대담한 색상을 활용했습니다.</p>
+                            <div class="project-tags">
+                                <span class="tag">Poster</span>
+                                <span class="tag">Art Direction</span>
+                                <span class="tag">Visual</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact 섹션 -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-content">
+                <p style="color: var(--text-light); font-size: 1.1rem; margin-bottom: 2rem;">
+                    프로젝트 문의나 협업 제안이 있으시면 언제든지 연락 주세요!
+                </p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i>📧</i>
+                        <a href="mailto:seoyeon.lee@design.com">seoyeon.lee@design.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i>📱</i>
+                        <a href="tel:+82-10-1234-5678">+82 10-1234-5678</a>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://instagram.com" target="_blank" class="social-link" title="Instagram">
+                        📷
+                    </a>
+                    <a href="https://behance.net" target="_blank" class="social-link" title="Behance">
+                        🎨
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="social-link" title="LinkedIn">
+                        💼
+                    </a>
+                    <a href="https://dribbble.com" target="_blank" class="social-link" title="Dribbble">
+                        🏀
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 이서연. Powered by <a href="https://ai.triz.kr" target="_blank">AI Portfolio Workshop</a>.</p>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.8;">
+            All Rights Reserved.
+        </p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        /**
+         * 모바일 메뉴 토글 기능
+         */
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenu.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            
+            // 햄버거 메뉴 애니메이션
+            this.classList.toggle('active');
+        });
+
+        // 메뉴 항목 클릭 시 모바일 메뉴 닫기
+        const navLinks = document.querySelectorAll('#nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        /**
+         * 스크롤 시 네비게이션 바 스타일 변경
+         */
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 4px 20px var(--shadow)';
+            } else {
+                nav.style.boxShadow = '0 2px 10px var(--shadow)';
+            }
+        });
+
+        /**
+         * 스크롤 애니메이션 - 요소가 뷰포트에 들어올 때 페이드인
+         */
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // 관찰할 요소들 선택
+        const animateElements = document.querySelectorAll('.skill-card, .project-card, .contact-item');
+        animateElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        /**
+         * 프로젝트 카드 클릭 시 상세 보기 (모달 효과)
+         * 실제 구현 시에는 더 상세한 모달 창을 추가할 수 있습니다.
+         */
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const projectTitle = this.querySelector('h3').textContent;
+                alert(`${projectTitle}\n\n상세 페이지는 실제 구현 시 모달 창이나 별도 페이지로 연결됩니다.`);
+            });
+        });
+
+        /**
+         * 부드러운 스크롤 효과 (구형 브라우저 지원)
+         */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        /**
+         * 페이지 로드 시 환영 효과
+         */
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        /**
+         * 스크롤 진행 표시 (선택사항)
+         */
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            
+            // 진행 바를 추가하려면 HTML에 <div id="progress-bar"></div> 추가 필요
+            const progressBar = document.getElementById('progress-bar');
+            if (progressBar) {
+                progressBar.style.width = scrolled + '%';
+            }
+        });
+
+        /**
+         * 콘솔 메시지 - 개발자를 위한 메시지
+         */
+        console.log('%c이서연 포트폴리오 웹사이트', 'font-size: 20px; color: #1976D2; font-weight: bold;');
+        console.log('%cPowered by AI Portfolio Workshop', 'font-size: 14px; color: #42A5F5;');
+        console.log('%c💻 GitHub Pages 배포 가능한 단일 HTML 파일입니다.', 'font-size: 12px; color: #757575;');
+    </script>
+</body>
+</html>
