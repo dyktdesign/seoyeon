@@ -305,12 +305,13 @@
             height: 100%;
             object-fit: cover;
             transition: all 0.5s ease;
+            filter: brightness(0.85);
         }
 
         /* 모던 슬릭 인터랙션 (C9) - 확대 및 블러 효과 */
         .project-card:hover .project-image {
-            transform: scale(1.1);
-            filter: blur(3px);
+            transform: scale(1.08);
+            filter: blur(2px) brightness(0.65);
         }
 
         .project-overlay {
@@ -319,9 +320,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(21, 101, 192, 0.9) 100%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
+            background: linear-gradient(to bottom, transparent 0%, rgba(21, 101, 192, 0.85) 70%, rgba(21, 101, 192, 0.95) 100%);
+            opacity: 1;
+            transition: all 0.5s ease;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -329,31 +330,59 @@
         }
 
         .project-card:hover .project-overlay {
-            opacity: 1;
+            background: linear-gradient(to bottom, transparent 0%, rgba(21, 101, 192, 0.95) 100%);
         }
 
         .project-info h3 {
             color: var(--white);
             font-size: 1.8rem;
             margin-bottom: 0.5rem;
-            transform: translateY(20px);
+            transform: translateY(0);
             transition: transform 0.5s ease;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         }
 
         .project-card:hover .project-info h3 {
-            transform: translateY(0);
+            transform: translateY(-5px);
         }
 
         .project-info p {
             color: var(--white);
             font-size: 1rem;
             line-height: 1.6;
-            transform: translateY(20px);
+            transform: translateY(0);
             transition: transform 0.5s ease 0.1s;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-info .short-desc {
+            opacity: 1;
+            max-height: 50px;
+            overflow: hidden;
+            transition: opacity 0.3s ease, max-height 0.3s ease;
+        }
+
+        .project-info .full-desc {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.4s ease 0.1s, max-height 0.4s ease 0.1s;
+        }
+
+        .project-card:hover .project-info .short-desc {
+            opacity: 0;
+            max-height: 0;
+            transition: opacity 0.3s ease, max-height 0.3s ease;
+        }
+
+        .project-card:hover .project-info .full-desc {
+            opacity: 1;
+            max-height: 300px;
+            transition: opacity 0.4s ease 0.2s, max-height 0.4s ease 0.2s;
         }
 
         .project-card:hover .project-info p {
-            transform: translateY(0);
+            transform: translateY(-5px);
         }
 
         .project-tags {
@@ -361,12 +390,12 @@
             gap: 0.5rem;
             margin-top: 1rem;
             flex-wrap: wrap;
-            transform: translateY(20px);
+            transform: translateY(0);
             transition: transform 0.5s ease 0.2s;
         }
 
         .project-card:hover .project-tags {
-            transform: translateY(0);
+            transform: translateY(-5px);
         }
 
         .tag {
@@ -376,6 +405,7 @@
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
 
         /* =========================
@@ -628,20 +658,20 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="https://via.placeholder.com/400x400/1976D2/FFFFFF?text=Seoyeon+Lee" alt="이서연 프로필 사진">
+                    <img src="images/profile.jpg" alt="이서연 프로필 사진">
                 </div>
                 <div class="about-text">
-                    <h3>안녕하세요, 그래픽 디자이너 이서연입니다.</h3>
+                    <h3>색과 형태로 브랜드의 이야기를 전달하는 그래픽 디자이너입니다.</h3>
                     <p>
-                        저는 브랜드의 본질을 시각적으로 표현하는 것을 전문으로 하는 그래픽 디자이너입니다. 
-                        색상과 형태, 타이포그래피를 통해 각 브랜드만의 고유한 이야기를 전달하는 것에 열정을 가지고 있습니다.
+                        안녕하세요, 그래픽 디자이너 이서연입니다. 
+                        브랜드의 정체성을 시각적으로 표현하고, 사람들의 마음을 움직이는 디자인을 만드는 것을 좋아합니다.
                     </p>
                     <p>
-                        5년 이상의 실무 경험을 통해 브랜딩, 패키지 디자인, 편집 디자인 등 다양한 프로젝트를 성공적으로 완수했습니다. 
-                        고객의 니즈를 정확히 파악하고, 트렌드를 반영하면서도 시대를 초월하는 디자인을 만들기 위해 항상 노력합니다.
+                        브랜드 아이덴티티, 패키지 디자인, 편집 디자인을 주로 작업하며, 각 프로젝트마다 독특한 비주얼 언어를 개발하는 데 집중합니다. 
+                        타이포그래피와 컬러 이론에 대한 깊은 이해를 바탕으로 일관성 있는 디자인 시스템을 구축합니다.
                     </p>
                     <p>
-                        디자인은 단순히 보기 좋은 것을 넘어 명확한 메시지를 전달하고 사용자에게 긍정적인 경험을 제공해야 한다고 믿습니다.
+                        현재는 지속가능성과 환경을 고려한 디자인에 관심을 가지고, 의미 있는 메시지를 담은 작업을 하고 있습니다.
                     </p>
                 </div>
             </div>
@@ -700,15 +730,17 @@
             <div class="projects-grid">
                 <!-- 프로젝트 1 -->
                 <div class="project-card">
-                    <img src="https://via.placeholder.com/600x800/1976D2/FFFFFF?text=Organic+Tea+Branding" alt="오가닉 티 브랜딩" class="project-image">
+                    <img src="images/project01.jpg" alt="친환경 화장품 브랜드" class="project-image">
                     <div class="project-overlay">
                         <div class="project-info">
-                            <h3>오가닉 티 브랜딩</h3>
-                            <p>자연과 건강을 테마로 한 프리미엄 티 브랜드의 전체 브랜드 아이덴티티 및 패키지 디자인 프로젝트입니다.</p>
+                            <h3>친환경 화장품 브랜드 아이덴티티</h3>
+                            <p class="short-desc">자연과 지속가능성을 담은 환경친화적인 브랜드</p>
+                            <p class="full-desc">친환경 화장품 브랜드의 전체 브랜드 아이덴티티를 개발했습니다. 자연에서 영감을 받은 컬러 팔레트와 유기적인 형태의 로고를 디자인하고, 지속가능한 포장 디자인을 제안했습니다. 브랜드 아이덴티티까지 완성하여 일관된 브랜드 경험을 제공합니다.</p>
                             <div class="project-tags">
-                                <span class="tag">Branding</span>
-                                <span class="tag">Package Design</span>
-                                <span class="tag">Identity</span>
+                                <span class="tag">Adobe Illustrator</span>
+                                <span class="tag">Photoshop</span>
+                                <span class="tag">InDesign</span>
+                                <span class="tag">Brand Strategy</span>
                             </div>
                         </div>
                     </div>
@@ -716,15 +748,17 @@
 
                 <!-- 프로젝트 2 -->
                 <div class="project-card">
-                    <img src="https://via.placeholder.com/600x800/42A5F5/FFFFFF?text=Culture+Magazine" alt="문화 잡지 편집" class="project-image">
+                    <img src="images/project02.jpg" alt="독립 서점 브랜딩" class="project-image">
                     <div class="project-overlay">
                         <div class="project-info">
-                            <h3>문화 잡지 편집 디자인</h3>
-                            <p>현대 미술과 디자인을 다루는 월간 문화 잡지의 레이아웃 및 타이포그래피 작업을 담당했습니다.</p>
+                            <h3>독립 서점 브랜딩 및 포스터 시리즈</h3>
+                            <p class="short-desc">아날로그 감성과 현대적 타이포그래피가 조화된 브랜딩</p>
+                            <p class="full-desc">지역 독립 서점의 브랜드 아이덴티티와 월별 문화 행사 포스터 시리즈를 디자인했습니다. 책과 지식의 가치를 시각적으로 표현하고, 따뜻하고 친근한 분위기를 담았습니다. 오프라인 공간과 온라인 채널 모두에 적용되는 일관된 디자인 시스템을 구축했습니다.</p>
                             <div class="project-tags">
-                                <span class="tag">Editorial</span>
+                                <span class="tag">Adobe Illustrator</span>
+                                <span class="tag">Photoshop</span>
                                 <span class="tag">Typography</span>
-                                <span class="tag">Print</span>
+                                <span class="tag">Print Design</span>
                             </div>
                         </div>
                     </div>
@@ -732,15 +766,17 @@
 
                 <!-- 프로젝트 3 -->
                 <div class="project-card">
-                    <img src="https://via.placeholder.com/600x800/1565C0/FFFFFF?text=Eco+Cosmetics" alt="친환경 화장품 패키지" class="project-image">
+                    <img src="images/project03.jpg" alt="음악 페스티벌 비주얼" class="project-image">
                     <div class="project-overlay">
                         <div class="project-info">
-                            <h3>친환경 화장품 패키지</h3>
-                            <p>지속가능성을 중시하는 화장품 브랜드의 패키지 디자인으로, 미니멀하면서도 고급스러운 느낌을 표현했습니다.</p>
+                            <h3>음악 페스티벌 비주얼 아이덴티티</h3>
+                            <p class="short-desc">역동적이고 에너지 넘치는 비주얼 통합 비주얼 시스템</p>
+                            <p class="full-desc">여름 음악 페스티벌의 메인 비주얼, 포스터, 티켓, 굿즈 디자인을 담당했습니다. 생동감 넘치는 컬러와 그래픽 요소로 축제의 분위기를 표현하고, SNS에서 확산될 수 있는 임팩트 있는 비주얼을 개발했습니다.</p>
                             <div class="project-tags">
-                                <span class="tag">Package</span>
-                                <span class="tag">Sustainable</span>
-                                <span class="tag">Minimal</span>
+                                <span class="tag">Adobe Illustrator</span>
+                                <span class="tag">Photoshop</span>
+                                <span class="tag">Visual Identity</span>
+                                <span class="tag">Merchandise Design</span>
                             </div>
                         </div>
                     </div>
@@ -748,15 +784,17 @@
 
                 <!-- 프로젝트 4 -->
                 <div class="project-card">
-                    <img src="https://via.placeholder.com/600x800/E3F2FD/1565C0?text=Art+Exhibition+Poster" alt="전시회 포스터" class="project-image">
+                    <img src="images/project04.jpg" alt="잡지 에디토리얼 디자인" class="project-image">
                     <div class="project-overlay">
                         <div class="project-info">
-                            <h3>아트 전시회 포스터</h3>
-                            <p>현대 미술 전시회를 위한 시리즈 포스터 디자인으로, 기하학적 형태와 대담한 색상을 활용했습니다.</p>
+                            <h3>잡지 에디토리얼 디자인</h3>
+                            <p class="short-desc">가독성과 심미성을 모두 갖춘 라이프스타일 매거진</p>
+                            <p class="full-desc">라이프스타일 잡지의 레이아웃과 타이포그래피를 디자인했습니다. 각 섹션마다 차별화된 그리드 시스템을 적용하고, 사진과 텍스트의 균형을 고려한 편집 디자인으로 읽는 재미를 더했습니다. 표지부터 본문까지 전체 디자인 시스템을 구축했습니다.</p>
                             <div class="project-tags">
-                                <span class="tag">Poster</span>
-                                <span class="tag">Art Direction</span>
-                                <span class="tag">Visual</span>
+                                <span class="tag">Adobe InDesign</span>
+                                <span class="tag">Photoshop</span>
+                                <span class="tag">Editorial Design</span>
+                                <span class="tag">Typography</span>
                             </div>
                         </div>
                     </div>
